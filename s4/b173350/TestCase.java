@@ -64,6 +64,10 @@ public class TestCase {
 	    myObject.setTarget("00".getBytes());
 	    value = myObject.estimation();
 	    System.out.println(">00 "+value);
+        /*added testcase*/
+        myObject.setTarget("000".getBytes());
+        value = myObject.estimation();
+        System.out.println(">000 "+value);
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");
