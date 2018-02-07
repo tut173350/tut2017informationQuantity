@@ -53,11 +53,13 @@ public class TestCase {
             
             
             /*スペースの長さが0*/
+            
             myObject.setSpace("".getBytes());
             myObject.setTarget("H".getBytes());
             freq = myObject.frequency();
             System.out.print("Space length as 0 "+freq+" ");
             if(0 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+             
             
             /*ターゲットがnull*/
             myObject2 = new s4.b173350.Frequencer();
