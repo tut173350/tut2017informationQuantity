@@ -32,7 +32,7 @@ import s4.specification.*;
 public class TestCase {
     public static void main(String[] args) {
         try {
-            FrequencerInterface  myObject,myObject2,myObject3;
+            FrequencerInterface  myObject,myObject2,myObject3,myObject4,myObject5;
             int freq;
             System.out.println("checking s4.b173350.Frequencer");
             myObject = new s4.b173350.Frequencer();
@@ -44,24 +44,27 @@ public class TestCase {
             
             
             /*ターゲットの長さが0*/
-            myObject.setSpace("Hi Ho Hi Ho".getBytes());
-            myObject.setTarget("".getBytes());
+            myObject5 = new s4.b173350.Frequencer();
+            myObject5.setSpace("Hi Ho Hi Ho".getBytes());
+            myObject5.setTarget("".getBytes());
             //System.out.println("aiueo");
-            freq = myObject.frequency();
-            System.out.print("Target length as 0 "+ freq + " ");
+            freq = myObject5.frequency();
+            System.out.print("Target length as 0: "+ freq + " ");
             if(-1 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
             
             
             /*スペースの長さが0*/
             
-            myObject.setSpace("".getBytes());
-            myObject.setTarget("H".getBytes());
-            freq = myObject.frequency();
+            myObject4 = new s4.b173350.Frequencer();
+            myObject4.setSpace("".getBytes());
+            myObject4.setTarget("H".getBytes());
+            freq = myObject4.frequency();
             System.out.print("Space length as 0 "+freq+" ");
             if(0 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
-             
+            
             
             /*ターゲットがnull*/
+            
             myObject2 = new s4.b173350.Frequencer();
             myObject2.setSpace("Hi Ho Hi Ho".getBytes());
             freq = myObject2.frequency();
@@ -69,11 +72,13 @@ public class TestCase {
             if(-1 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
             
             /*スペースがnull*/
+            
             myObject3 = new s4.b173350.Frequencer();
             myObject3.setTarget("H".getBytes());
             freq = myObject3.frequency();
             System.out.print("Space null "+ freq + " ");
             if(0 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+            
             
         }
         catch(Exception e) {
@@ -81,7 +86,7 @@ public class TestCase {
         }
         
         try {
-            InformationEstimatorInterface myObject,myObject2,myObject3;
+            InformationEstimatorInterface myObject,myObject2,myObject3,myObject4;
             double value;
             System.out.println("checking s4.b173350.InformationEstimator");
             myObject = new s4.b173350.InformationEstimator();
@@ -115,6 +120,7 @@ public class TestCase {
             
             myObject2 = new s4.b173350.InformationEstimator();
             myObject3 = new s4.b173350.InformationEstimator();
+            myObject4 = new s4.b173350.InformationEstimator();
             
             /*ターゲットが設定されていない場合*/
             myObject2.setSpace("3210321001230123".getBytes());
@@ -125,6 +131,12 @@ public class TestCase {
             myObject3.setTarget("4".getBytes());
             value = myObject3.estimation();
             System.out.println("space null "+value);
+            
+            myObject4.setTarget("4".getBytes());
+            System.out.println("dd");
+            myObject4.setSpace("".getBytes());
+            value = myObject4.estimation();
+            System.out.println("space length 0 "+value);
             
         }
         catch(Exception e) {

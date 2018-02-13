@@ -47,6 +47,7 @@ public class Frequencer implements FrequencerInterface{
         else return -1;
     }
     public void setSpace(byte []space) {
+        if(space.length == 0) return;
         mySpace = space;
         if(mySpace.length>0) spaceReady = true;
         if(mySpace.length<=0) return;
@@ -86,7 +87,7 @@ public class Frequencer implements FrequencerInterface{
         quicksort(suffixArray,0,suffixArray.length-1);
         
         
-        printSuffixArray();
+        //printSuffixArray();
     }
     private void quicksort(int suffixArray[],int left,int right){
         int pivot;
@@ -196,7 +197,8 @@ public class Frequencer implements FrequencerInterface{
             //bmid = mid;
             //if(bmid == b2mid) mid++;
             //System.out.println("mid is a "+mid);
-            result = targetCompare(mid,0,myTarget.length);
+            //result = targetCompare(mid,0,myTarget.length);
+            result = targetCompare(mid,start,end);
             if(result == 0) break;
             else if(result == 1) right = mid - 1;
             else left = mid + 1;
@@ -207,7 +209,7 @@ public class Frequencer implements FrequencerInterface{
             //}
             //System.out.println("left is a "+left);
             //System.out.println("rght is a "+right);
-            System.out.println("left:"+left+" mid:"+mid+" right:"+right);
+            //System.out.println("left:"+left+" mid:"+mid+" right:"+right);
             //System.out.println(mid);
             if(left >= right){
                 left = left - 10;
@@ -215,8 +217,8 @@ public class Frequencer implements FrequencerInterface{
                 endflag = 1;
             }
         }
-        System.out.println("end");
-        System.out.println("left:"+left+" mid:"+mid+" right:"+right);
+        //System.out.println("end");
+        //System.out.println("left:"+left+" mid:"+mid+" right:"+right);
         
         int first = subByteStartIndex(start,end);
         int last1 = subByteEndIndex(start, end);
@@ -227,17 +229,22 @@ public class Frequencer implements FrequencerInterface{
          for(int k=start;k<end;k++) { System.out.write(myTarget[k]); } System.out.printf(": first=%d last1=%d\n", first, last1);
          */
         
-        System.out.println("first is "+first);
-        System.out.println("last1 is "+last1);
+        //System.out.println("first is "+first);
+        //System.out.println("last1 is "+last1);
         return last1 - first;
     }
     public void setTarget(byte [] target) {
-        myTarget = target; if(myTarget.length>0) targetReady = true;
+        if(target.length != 0){
+        myTarget = target;
+        if(myTarget.length>0) targetReady = true;
+        }
     }
     
     public int frequency() {
-        if(targetReady == false) return -1; if(spaceReady == false) return 0;
+        if(targetReady == false) return -1;
         if(myTarget.length == 0) return -1;
+        //if(mySpace.length == 0) return 0;
+        if(spaceReady == false) return 0;
         return subByteFrequency(0, myTarget.length);
     }
     
@@ -247,8 +254,8 @@ public class Frequencer implements FrequencerInterface{
             frequencerObject = new Frequencer();
             //frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
             //frequencerObject.setTarget("H".getBytes());
-            frequencerObject.setSpace("3210321001230123".getBytes());
-            frequencerObject.setTarget("32103".getBytes());
+            frequencerObject.setSpace("3210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123321032100123012332103210012301233210321001230123".getBytes());
+            frequencerObject.setTarget("0".getBytes());
             int result = frequencerObject.frequency();
             System.out.println("Freq = "+ result+" ");
             //if(4 == result) { System.out.println("OK"); }
